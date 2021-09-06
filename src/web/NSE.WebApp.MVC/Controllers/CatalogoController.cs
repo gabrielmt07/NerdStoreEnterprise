@@ -8,8 +8,10 @@ namespace NSE.WebApp.MVC.Controllers
     public class CatalogoController : MainController
     {
         private readonly ICatalogoService _catalogoService;
+        //private readonly ICatalogoServiceRefit _catalogoService;
 
         public CatalogoController(ICatalogoService catalogoService)
+        //public CatalogoController(ICatalogoServiceRefit catalogoService)
         {
             _catalogoService = catalogoService;
         }
@@ -22,7 +24,7 @@ namespace NSE.WebApp.MVC.Controllers
             var produtos = await _catalogoService.ObterTodos();
 
             return View(produtos);
-        }
+            }
 
         [HttpGet]
         [Route("produto-detalhe/{id}")]
