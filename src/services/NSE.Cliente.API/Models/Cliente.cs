@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NSE.Cliente.API.Models
 {
-    public class Cliente : Entity, IAggregateRoot
+    public class ClienteLoja : Entity, IAggregateRoot
     {
         public string Nome { get; private set; }
         public Email Email { get; private set; }
@@ -15,9 +15,9 @@ namespace NSE.Cliente.API.Models
         public Endereco Endereco { get; private set; }
 
         // EF Relation
-        protected Cliente() { }
+        protected ClienteLoja() { }
 
-        public Cliente(Guid id, string nome, string email, string cpf, bool excluido)
+        public ClienteLoja(Guid id, string nome, string email, string cpf, bool excluido)
         {
             Id = id;
             Nome = nome;
