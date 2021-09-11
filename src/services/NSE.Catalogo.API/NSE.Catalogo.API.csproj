@@ -5,6 +5,8 @@
     <UserSecretsId>25dac219-65c1-4845-988a-a805e1a49bb4</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
+    <OutputType>Exe</OutputType>
+    <StartupObject>NSE.Catalogo.API.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,7 +26,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\building blocks\NSE.Core\NSE.Core.csproj" />
     <ProjectReference Include="..\..\building blocks\NSE.WebAPI.Core\NSE.WebAPI.Core.csproj" />
-    <ProjectReference Include="..\NSE.Identidade.API\NSE.Identidade.API.csproj" />
   </ItemGroup>
 
 </Project>
