@@ -17,7 +17,7 @@ namespace NSE.Cliente.API.Models
         // EF Relation
         protected ClienteLoja() { }
 
-        public ClienteLoja(Guid id, string nome, string email, string cpf, bool excluido)
+        public ClienteLoja(Guid id, string nome, string email, string cpf)
         {
             Id = id;
             Nome = nome;

@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation.Results;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using NSE.Cliente.API.Application.Commands;
 using NSE.Cliente.API.Data;
 
 namespace NSE.Cliente.API.Configuration
@@ -8,6 +11,7 @@ namespace NSE.Cliente.API.Configuration
         public static void RegisterServices(this IServiceCollection services)
         {
             services.AddScoped<ClientesContext>();
+            services.AddScoped<IRequestHandler<RegistrarClienteCommand, ValidationResult>, ClienteCommandHandler>();
         }
     }
 }
