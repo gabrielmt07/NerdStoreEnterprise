@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NSE.Cliente.API.Application.Commands
 {
-    public class ClienteCommandHandler : CommandHandler IRequestHandler<RegistrarClienteCommand, ValidationResult>
+    public class ClienteCommandHandler : CommandHandler, IRequestHandler<RegistrarClienteCommand, ValidationResult>
     {
         public async Task<ValidationResult> Handle(RegistrarClienteCommand message, CancellationToken cancellationToken)
         {
