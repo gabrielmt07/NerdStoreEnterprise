@@ -27,12 +27,11 @@ namespace NSE.Identidade.API.Controllers
 
         public AuthController(SignInManager<IdentityUser> signInManager, 
                               UserManager<IdentityUser> userManager, 
-                              IOptions<AppSettings> appSettings, IBus bus) 
+                              IOptions<AppSettings> appSettings) 
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _appSettings = appSettings.Value; //quando injetar, já teremos populado todas informações de appsettings.Development
-            _bus = bus;
         }
 
         [HttpPost("nova-conta")]
