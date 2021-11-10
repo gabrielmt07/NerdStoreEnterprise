@@ -8,7 +8,7 @@ namespace NSE.Core.Messages.Integration
 
         public ResponseMessage(ValidationResult validationResult)
         {
-            ValidationResult = validationResult
+            ValidationResult = validationResult;
         }
     }
 }

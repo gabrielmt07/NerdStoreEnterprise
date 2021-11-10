@@ -9,6 +9,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
+
+
 namespace NSE.Cliente.API.Services
 {
     public class RegistroClienteIntegrationHandler : BackgroundService
