@@ -1,4 +1,5 @@
-﻿using NSE.Core.Messages.Integration;
+﻿using EasyNetQ.Internals;
+using NSE.Core.Messages.Integration;
 using System;
 using System.Threading.Tasks;
 
@@ -29,7 +30,7 @@ namespace NSE.MessageBus
             where TRequest : IntegrationEvent
             where TResponse : ResponseMessage;
 
-        IDisposable RespondAsync<TRequest, TResponse>(Func<TRequest, Task<TResponse>> responder)
+        AwaitableDisposable<IDisposable> RespondAsync<TRequest, TResponse>(Func<TRequest, Task<TResponse>> responder)
             where TRequest : IntegrationEvent
             where TResponse : ResponseMessage;
     }
