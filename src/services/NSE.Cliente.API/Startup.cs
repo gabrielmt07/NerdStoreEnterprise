@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NSE.Cliente.API.Configuration;
+using NSE.Identidade.API.Configuration;
 using NSE.WebAPI.Core.Identidade;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,8 @@ namespace NSE.Cliente.API
             services.AddMediatR(typeof(Startup));
 
             services.RegisterServices();
+
+            services.AddMessageBusConfiguration(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
