@@ -46,6 +46,45 @@ namespace NSE.Carrinho.API.Controllers
             return CustomResponse();
         }
 
+        [HttpPut("carrinho/{proutoId}")]
+        public async Task<IActionResult> AtualizarItemCarrinho(Guid produtoId, CarrinhoItem item)
+        {
+            var carrinho = await ObterCarrinhoCliente();
+            var itemCarrinho = await ObterItemCarrinhoValidado(produtoId, carrinho, item);
+            if (itemCarrinho == null) return CustomResponse();
+
+            carrinho.AtualizarUnidades(itemCarrinho, item.Quantidade);
+
+            ValidarCarrinho(carrinho);
+            if (!OperacaoValida()) return CustomResponse();
+
+            _context.CarrinhoItens.Update(itemCarrinho);
+            _context.CarrinhoCliente.Update(carrinho);
+
+            await PersistirDados();
+            return CustomResponse();
+        }
+
+        [HttpDelete("carrinho/{produtoId}")]
+        public async Task<IActionResult> RemoverItemCarrinho(Guid produtoId)
+        {
+            var carrinho = await ObterCarrinhoCliente();
+
+            var itemCarrinho = await ObterItemCarrinhoValidado(produtoId, carrinho);
+            if (itemCarrinho == null) return CustomResponse();
+
+            ValidarCarrinho(carrinho);
+            if (!OperacaoValida()) return CustomResponse();
+
+            carrinho.RemoverItem(itemCarrinho);
+
+            _context.CarrinhoItens.Remove(itemCarrinho);
+            _context.CarrinhoCliente.Update(carrinho);
+
+            await PersistirDados();
+            return CustomResponse();
+        }
+
         private void ManipularNovoCarrinho(CarrinhoItem item)
         {
             var carrinho = new CarrinhoCliente(_user.ObterUserId());
@@ -72,23 +111,11 @@ namespace NSE.Carrinho.API.Controllers
             _context.CarrinhoCliente.Update(carrinho);
         }
 
-        [HttpPut("carrinho/{proutoId}")]
-        public async Task<IActionResult> AtualizarItemCarrinho(Guid produtoId, CarrinhoItem item)
+        private async Task<CarrinhoCliente> ObterCarrinhoCliente()
         {
-            var carrinho = await ObterCarrinhoCliente();
-            var itemCarrinho = await ObterItemCarrinhoValidado(produtoId, carrinho, item);
-            if (itemCarrinho == null) return CustomResponse();
-
-            carrinho.AtualizarUnidades(itemCarrinho, item.Quantidade);
-
-            ValidarCarrinho(carrinho);
-            if (!OperacaoValida()) return CustomResponse();
-
-            _context.CarrinhoItens.Update(itemCarrinho);
-            _context.CarrinhoCliente.Update(carrinho);
-
-            await PersistirDados();
-            return CustomResponse();
+            return await _context.CarrinhoCliente
+                .Include(c => c.Itens)
+                .FirstOrDefaultAsync(c => c.ClienteId == _user.ObterUserId());
         }
 
         private async Task<CarrinhoItem> ObterItemCarrinhoValidado(Guid produtoId, CarrinhoCliente carrinho, CarrinhoItem item = null)
@@ -115,33 +142,6 @@ namespace NSE.Carrinho.API.Controllers
             }
 
             return itemCarrinho;
-        }
-
-        [HttpDelete("carrinho/{produtoId}")]
-        public async Task<IActionResult> RemoverItemCarrinho(Guid produtoId)
-        {
-            var carrinho = await ObterCarrinhoCliente();
-
-            var itemCarrinho = await ObterItemCarrinhoValidado(produtoId, carrinho);
-            if (itemCarrinho == null) return CustomResponse();
-
-            ValidarCarrinho(carrinho);
-            if (!OperacaoValida()) return CustomResponse();
-
-            carrinho.RemoverItem(itemCarrinho);
-
-            _context.CarrinhoItens.Remove(itemCarrinho);
-            _context.CarrinhoCliente.Update(carrinho);
-
-            await PersistirDados();
-            return CustomResponse();
-        }
-
-        private async Task<CarrinhoCliente> ObterCarrinhoCliente()
-        {
-            return await _context.CarrinhoCliente
-                .Include(c => c.Itens)
-                .FirstOrDefaultAsync(c => c.ClienteId == _user.ObterUserId());
         }
 
         private async Task PersistirDados()
