@@ -34,6 +34,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pedido", "Pedido", "{721BD467-A245-424C-B1E3-7CBEF3A0F3A6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSE.Carrinho.API", "src\services\NSE.Carrinho.API\NSE.Carrinho.API.csproj", "{E3AA1F32-8176-4C4C-BD79-5EA152222BBF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{38E459E0-8752-47E1-B9ED-5E27107F917B} = {38E459E0-8752-47E1-B9ED-5E27107F917B}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSE.Catalogo.API", "src\services\NSE.Catalogo.API\NSE.Catalogo.API.csproj", "{158EE60B-30F9-4512-A960-74161F21253C}"
 EndProject
@@ -57,9 +60,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compras", "Compras", "{FEBA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSE.Bff.Compras", "src\api gateways\NSE.Bff.Compras\NSE.Bff.Compras.csproj", "{765009A2-2794-44D1-BF2E-C1FC4E67CAB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSE.Pedidos.Domain", "src\services\NSE.Pedidos.Domain\NSE.Pedidos.Domain.csproj", "{D1800CA4-9AD9-4CF2-9140-4006216E1501}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSE.Pedidos.Domain", "src\services\NSE.Pedidos.Domain\NSE.Pedidos.Domain.csproj", "{D1800CA4-9AD9-4CF2-9140-4006216E1501}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSE.Pedidos.Infra", "src\services\NSE.Pedidos.Infra\NSE.Pedidos.Infra.csproj", "{789D1A4D-0DA1-430F-ACF1-05F69AF1F155}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSE.Pedidos.Infra", "src\services\NSE.Pedidos.Infra\NSE.Pedidos.Infra.csproj", "{789D1A4D-0DA1-430F-ACF1-05F69AF1F155}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

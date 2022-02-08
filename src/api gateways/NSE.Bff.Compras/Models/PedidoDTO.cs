@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using NSE.Core.Validation;
+using NSE.Pedidos.API.Application.DTO;
 
 namespace NSE.Bff.Compras.Models
 {

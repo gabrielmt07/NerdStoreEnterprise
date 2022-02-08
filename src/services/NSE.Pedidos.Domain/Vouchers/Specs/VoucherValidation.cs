@@ -1,4 +1,4 @@
-﻿using NetDevPack.Specification;
+﻿ using NetDevPack.Specification;
 
 namespace NSE.Pedidos.Domain.Specs
 {
